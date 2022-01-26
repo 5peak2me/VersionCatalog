@@ -1,0 +1,46 @@
+[versions]
+groovy = "3.0.5"
+checkstyle = "8.37"
+compilesdk = "30"
+targetsdk = "30"
+build-tools-version = "30.0.3"
+# Kotlin 版本
+kotlin-version = "1.5.21"
+
+# 基础库
+[libraries]
+retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+groovy-core = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
+groovy-json = { module = "org.codehaus.groovy:groovy-json", version.ref = "groovy" }
+groovy-nio = { module = "org.codehaus.groovy:groovy-nio", version.ref = "groovy" }
+commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = { strictly = "[3.8, 4.0[", prefer="3.9" } }
+
+##### 插件
+[plugins]
+jmh = { id = "me.champeau.jmh", version = "0.6.5" }
+android-gradle-plugin = "com.android.tools.build:gradle:7.0.3"
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin-version" }
+kotlin-serialization = { module = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-version" }
+detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt", neme = "detekt-gradle-plugin", version = "1.14.2" }
+
+# Firebase 相关
+google-services = { module = "com.google.gms", name = "google-services", version = "4.3.10"}
+firebase-crashlytics-gradle = { module = "com.google.firebase", name = "firebase-crashlytics-gradle", version = "2.8.1" }
+firebase-perf-plugin = { module = "com.google.firebase", name = "perf-plugin", version = "1.3.5" }
+
+# 华米自研插件
+huami-res-checker = { module = "com.huami.plugin", name = "res-checker", version = "1.0.7" }
+huami-i18n-collector = { module = "com.huami.plugin", name = "i18n-collector", version = "0.1.16" }
+huami-string-placeholder = { module = "com.huami.plugin", name = "string-placeholder", version = "0.0.3" }
+
+# 开源三方插件
+router-plugin = { module = "com.chenenyu.router", name = "gradle-plugin", version = "1.7.5" }
+res-guard-plugin = { module = "com.tencent.mm", name = "AndResGuard-gradle-plugin", version = "1.2.20" }
+greendao-plugin = { module = "org.greenrobot", name = "greendao-gradle-plugin", version = "3.2.2" }
+
+# 模块
+[modules]
+
+
+[bundles]
+groovy = ["groovy-core", "groovy-json", "groovy-nio"]
