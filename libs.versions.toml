@@ -1,46 +1,183 @@
 [versions]
 groovy = "3.0.5"
 checkstyle = "8.37"
+android-plugin = "7.0.4"
+
+# 最小支持版本
+minsdk = "21"
+# 编译版本
 compilesdk = "30"
+# 目标版本
 targetsdk = "30"
+# 构建工具版本，如 appt2 等
 build-tools-version = "30.0.3"
 # Kotlin 版本
 kotlin-version = "1.5.21"
+# CameraX 版本
+camerax-version = "1.0.2" # https://developer.android.com/jetpack/androidx/releases/camera
+lifecycle-version = "2.4.0" # https://developer.android.com/jetpack/androidx/releases/lifecycle
+# Compose 版本
+compose-version = "1.0.5" # https://developer.android.com/jetpack/androidx/releases/compose
+# exoplayer
+exoplayer-version = "2.15.0"
+# coroutines
+coroutines-version = "1.5.1"
+# room
+room-version = "2.3.0" # https://developer.android.com/jetpack/androidx/releases/room
+# navigation
+navigation-version = "2.1.0" # https://developer.android.com/jetpack/androidx/releases/navigation
 
-# 基础库
+######################
+####### 基础库 #######
+######################
 [libraries]
-retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+
+# ####### androidx 依赖 #######
+androidx-annotation = "androidx.annotation:annotation:1.3.0" # https://developer.android.com/jetpack/androidx/releases/annotation
+androidx-appcompat = "androidx.appcompat:appcompat:1.3.1" # https://developer.android.com/jetpack/androidx/releases/appcompat
+androidx-browser = "androidx.browser:browser:1.3.0" # https://developer.android.com/jetpack/androidx/releases/browser
+androidx-cardview = "androidx.cardview:cardview:1.0.0" # https://developer.android.com/jetpack/androidx/releases/cardview
+androidx-constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.0" # https://developer.android.com/jetpack/androidx/releases/constraintlayout
+androidx-core-ktx = "androidx.core:core-ktx:1.5.0" # https://developer.android.com/jetpack/androidx/releases/core
+androidx-exifinterface = { module = "androidx.exifinterface:exifinterface", version = "1.3.3" }
+androidx-fragment = "androidx.fragment:fragment-ktx:1.2.2" # https://developer.android.com/jetpack/androidx/releases/fragment
+androidx-preference = "androidx.preference:preference-ktx:1.1.1" # https://developer.android.com/jetpack/androidx/releases/preference
+androidx-recyclerview = "androidx.recyclerview:recyclerview:1.2.1" # https://developer.android.com/jetpack/androidx/releases/recyclerview
+androidx-transition = "androidx.transition:transition:1.4.1" # https://developer.android.com/jetpack/androidx/releases/transition
+androidx-viewpager = "androidx.viewpager:viewpager:1.0.0" # https://developer.android.com/jetpack/androidx/releases/viewpager
+
+# ####### Room 依赖 ####### # https://developer.android.com/jetpack/androidx/releases/room
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-version" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-version" } # todo
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-version" }
+
+# ####### Navigation 依赖 ####### # https://developer.android.com/jetpack/androidx/releases/navigation
+androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-version" }
+androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-version" }
+
+# ####### CameraX 依赖 ####### # https://developer.android.com/jetpack/androidx/releases/camera
+androidx-camerax-core = { module = "androidx.camera:camera-core", version.ref = "camerax-version" }
+androidx-camerax-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camerax-version" }
+androidx-camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camerax-version" }
+androidx-camerax-view = { module = "androidx.camera:camera-view", version = "1.0.0-alpha28" } # alpha29+ 编译版本为 31，不符合要求
+
+# ####### Lifecycle 依赖 ####### # https://developer.android.com/jetpack/androidx/releases/lifecycle
+lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime", version.ref = "lifecycle-version" }
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-version" }
+lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle-version" }
+
+# ####### Compose 依赖 ####### # https://developer.android.com/jetpack/androidx/releases/compose
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose-version" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-version" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-version" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose-version" }
+compose-constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.0"
+compose-accompanist = "com.google.accompanist:accompanist-systemuicontroller:0.20.2"
+
+# ####### kotlin 依赖 #######
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-version" } # https://search.maven.org/artifact/org.jetbrains.kotlin/kotlin-stdlib
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" } # https://search.maven.org/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines-version" } # https://search.maven.org/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-android
+
+# ####### Test 依赖 #######
+test-junit = { module = "junit:junit", version = "4.13.2" } # https://search.maven.org/artifact/junit/junit
+test-truth = "com.google.truth:truth:0.36" # https://search.maven.org/artifact/com.google.truth/truth
+test-androidx-junit = { module = "androidx.test.ext:junit", version = "1.1.3" } # https://developer.android.com/jetpack/androidx/releases/test
+test-androidx-espresso = { module = "androidx.test.espresso:espresso-core", version = "3.4.0" } # https://developer.android.com/jetpack/androidx/releases/test
+test-power-mock = "org.powermock:powermock-module-junit4:2.0.7" # https://search.maven.org/artifact/org.powermock/powermock-module-junit4
+test-power-mock-api-mockito = "org.powermock:powermock-api-mockito2:2.0.7" # https://search.maven.org/artifact/org.powermock/powermock-api-mockito2
+test-robolectric = "org.robolectric:robolectric:4.5.1" # https://search.maven.org/artifact/org.robolectric/robolectric
+
+######################
+####### 三方库 #######
+######################
+
+# ####### Google 相关依赖 #######
+google-material = "com.google.android.material:material:1.4.0" # https://maven.google.com/web/index.html?q=material#com.google.android.material:material
+
+google-exoplayer = { module = "com.google.android.exoplayer:exoplayer", version.ref = "exoplayer-version" } # https://maven.google.com/web/index.html?q=exoplayer#com.google.android.exoplayer:exoplayer
+google-exoplayer-core = { module = "com.google.android.exoplayer:exoplayer-core", version.ref = "exoplayer-version" } # https://maven.google.com/web/index.html?q=exoplayer#com.google.android.exoplayer:exoplayer-core
+google-exoplayer-ui = { module = "com.google.android.exoplayer:exoplayer-ui", version.ref = "exoplayer-version" } # https://maven.google.com/web/index.html?q=exoplayer#com.google.android.exoplayer:exoplayer-ui
+
+google-flexbox = "com.google.android:flexbox:1.0.0" # https://maven.google.com/web/index.html?q=flexbox#com.google.android.flexbox:flexbox
+google-zxing = { module = "com.google.zxing:core", version = "3.4.1" }
+google-gson = "com.google.code.gson:gson:2.8.2"
+google-guava = "com.google.guava:guava:27.0.1-android"
+
+# ####### RxJava 相关依赖 #######
+rxjava = "io.reactivex:rxjava:1.3.0" # https://github.com/ReactiveX/RxJava/tree/v1.3.0
+rxandroid = "io.reactivex:rxandroid:1.2.1" # https://github.com/ReactiveX/RxAndroid/tree/1.2.1
+rxjava2 = "io.reactivex.rxjava2:rxjava:2.2.4" # https://github.com/ReactiveX/RxJava/tree/v2.2.4
+rxandroid2 = "io.reactivex.rxjava2:rxandroid:2.0.2" # https://github.com/ReactiveX/RxAndroid/tree/2.0.2
+
+# ####### squareup 相关依赖 #######
+squareup-okhttp = "com.squareup.okhttp3:okhttp:4.9.3" # https://github.com/square/okhttp
+squareup-retrofit = "com.squareup.retrofit2:retrofit:2.9.0" # https://github.com/square/retrofit
+squareup-retrofit-gson = "com.squareup.retrofit2:converter-gson:2.9.0"
+squareup-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.8.1" # https://github.com/square/leakcanary
+squareup-javapoet = "com.squareup:javapoet:1.13.0" # https://github.com/square/javapoet
+squareup-kotlinpoet = "com.squareup:kotlinpoet:1.10.2" # https://github.com/square/kotlinpoet
+squareup-moshi = "com.squareup.moshi:moshi:1.13.0" # https://github.com/square/moshi
+squareup-okio = "com.squareup.okio:okio:3.0.0" # https://github.com/square/okio
+# ####### greenrobot 相关依赖 #######
+greenrobot-eventbus = "de.greenrobot:eventbus:2.4.0" # https://github.com/greenrobot/EventBus/tree/V2.4.0
+greenrobot-greendao = "org.greenrobot:greendao:3.2.2" # https://github.com/greenrobot/greenDAO
+
+javax-inject = "javax.inject:javax.inject:1"
+danikula-videocache = "com.danikula:videocache:2.7.1"
+smartrefresh = "com.scwang.smartrefresh:SmartRefreshLayout:1.0.3" # https://github.com/scwang90/SmartRefreshLayout
+trustkit = "com.datatheorem.android.trustkit:trustkit:1.1.3" # https://github.com/datatheorem/TrustKit-Android
+timber = "com.jakewharton.timber:timber:4.7.1" # https://github.com/JakeWharton/timber
+
 groovy-core = { module = "org.codehaus.groovy:groovy", version.ref = "groovy" }
 groovy-json = { module = "org.codehaus.groovy:groovy-json", version.ref = "groovy" }
 groovy-nio = { module = "org.codehaus.groovy:groovy-nio", version.ref = "groovy" }
 commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version = { strictly = "[3.8, 4.0[", prefer="3.9" } }
 
+
 ##### 插件
 [plugins]
-jmh = { id = "me.champeau.jmh", version = "0.6.5" }
-android-gradle-plugin = "com.android.tools.build:gradle:7.0.3"
-kotlin-gradle-plugin = { module = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin-version" }
-kotlin-serialization = { module = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-version" }
-detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt", neme = "detekt-gradle-plugin", version = "1.14.2" }
+#android-application = { id = "com.android.application", version.ref = "android-plugin" }
+#android-library = { id = "com.android.library", version.ref = "android-plugin" }
+#kotlin = { id = "org.jetbrains.kotlin.android", version = "1.5.31" }
+#jmh = { id = "me.champeau.jmh", version = "0.6.5" }
+agp-application = { id = "com.android.application", version.ref = "android-plugin" }
+agp-library = { id = "com.android.library", version.ref = "android-plugin" }
+#kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+jfrog-artifactory = { id = "com.jfrog.artifactory", version = "4.24.23" } # https://github.com/jfrog/build-info
+#android-gradle-plugin = "com.android.tools.build:gradle:7.0.3"
+#kotlin-gradle-plugin = { module = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin-version" }
+#kotlin-serialization = { module = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin-version" }
+#detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt", neme = "detekt-gradle-plugin", version = "1.14.2" }
 
 # Firebase 相关
-google-services = { module = "com.google.gms", name = "google-services", version = "4.3.10"}
-firebase-crashlytics-gradle = { module = "com.google.firebase", name = "firebase-crashlytics-gradle", version = "2.8.1" }
-firebase-perf-plugin = { module = "com.google.firebase", name = "perf-plugin", version = "1.3.5" }
-
-# 华米自研插件
-huami-res-checker = { module = "com.huami.plugin", name = "res-checker", version = "1.0.7" }
-huami-i18n-collector = { module = "com.huami.plugin", name = "i18n-collector", version = "0.1.16" }
-huami-string-placeholder = { module = "com.huami.plugin", name = "string-placeholder", version = "0.0.3" }
+#google-services = { module = "com.google.gms", name = "google-services", version = "4.3.10"}
+#firebase-crashlytics-gradle = { module = "com.google.firebase", name = "firebase-crashlytics-gradle", version = "2.8.1" }
+#firebase-perf-plugin = { module = "com.google.firebase", name = "perf-plugin", version = "1.3.5" }
 
 # 开源三方插件
-router-plugin = { module = "com.chenenyu.router", name = "gradle-plugin", version = "1.7.5" }
-res-guard-plugin = { module = "com.tencent.mm", name = "AndResGuard-gradle-plugin", version = "1.2.20" }
-greendao-plugin = { module = "org.greenrobot", name = "greendao-gradle-plugin", version = "3.2.2" }
-
-# 模块
-[modules]
+#router-plugin = { module = "com.chenenyu.router", name = "gradle-plugin", version = "1.7.5" }
+#res-guard-plugin = { module = "com.tencent.mm", name = "AndResGuard-gradle-plugin", version = "1.2.20" }
+#greendao-plugin = { module = "org.greenrobot", name = "greendao-gradle-plugin", version = "3.2.2" }
 
 
 [bundles]
+lifecycle = ["lifecycle-viewmodel", "lifecycle-livedata"]
+
+# CameraX 的聚合依赖
+camerax = ["androidx-camerax-core", "androidx-camerax-camera2", "androidx-camerax-lifecycle", "androidx-camerax-view"]
+
+# Room 的聚合依赖
+
+# Navigation 的聚合依赖
+
+# Compose 的聚合依赖
+#compose = ["compose-ui", "compose-ui-tooling-preview", "compose-material", "compose-constraintlayout", "compose-accompanist"]
+
+# Exoplayer 的聚合依赖
+exoplayer = ["google-exoplayer", "google-exoplayer-core", "google-exoplayer-ui"]
+
+# 协程的聚合依赖
+coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
+
 groovy = ["groovy-core", "groovy-json", "groovy-nio"]
